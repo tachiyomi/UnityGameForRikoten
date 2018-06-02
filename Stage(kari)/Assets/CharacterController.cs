@@ -4,31 +4,37 @@ using UnityEngine;
 
 public class CharacterController : MonoBehaviour {
 
+    Rigidbody rb;
+
 	// Use this for initialization
 	void Start () {
-//        public float z;
+        rb = GetComponent<Rigidbody>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (Input.GetKey(KeyCode.UpArrow)) {
-            this.transform.Translate(0,0,  0.1f);
+        if (Input.GetKey(KeyCode.W)) {
+            rb.velocity = new Vector3(0, 0, 2f);
         }
 
-        if (Input.GetKey(KeyCode.DownArrow))
+        if (Input.GetKey(KeyCode.S))
         {
-            this.transform.Translate(0, 0, - 0.1f);
+            rb.velocity = new Vector3(0, 0, -2f);
         }
 
-        if (Input.GetKey(KeyCode.RightArrow))
+        if (Input.GetKey(KeyCode.D))
         {
-            this.transform.Translate(0.1f, 0, 0);
+            rb.velocity = new Vector3(2f, 0, 0);
         }
 
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.A))
         {
-            this.transform.Translate(-0.1f, 0, 0);
+            rb.velocity = new Vector3(-2f, 0, 0);
         }
 
+        if(Input.GetKey(KeyCode.Space))
+        {
+            rb.AddForce(new Vector3(0, 50f, 0));
+        }
     }
 }
